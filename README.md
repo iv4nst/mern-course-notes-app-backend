@@ -1,1 +1,1 @@
-# MERN-course-notes-app
+# MERN-course-notes-app-backend
