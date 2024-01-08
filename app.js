@@ -2,6 +2,10 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
+const cors = require('cors')
+
+// use "cors" only in DEV to allow access from everywhere (in PROD, whitelist domains)
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Hello world!')
