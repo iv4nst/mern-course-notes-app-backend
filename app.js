@@ -5,10 +5,11 @@ const app = express()
 const cors = require('cors')
 
 // connectDB
-const connectDB = require('./db/connect')
+const connectDB = require('./src/db/connect')
 
-const notesRouter = require('./api/v1/index')
+const notesRouter = require('./src/routes/notes')
 
+app.use(express.json())
 // use "cors" only in DEV to allow access from everywhere (in PROD, whitelist domains)
 app.use(cors())
 
@@ -18,14 +19,15 @@ app.get('/', (req, res) => {
 })
 
 // use routers
-app.use('/notes', notesRouter)
+app.use('/api/v1/notes', notesRouter)
 
 const port = process.env.PORT || 3000
 
 const start = async () => {
     try {
         // connect to DB
-        await connectDB(process.env.MONGO_URI)
+        // await connectDB(process.env.MONGO_URI)
+        await connectDB('mongodb://127.0.0.1:27017/notes-db')
         console.log('Connected to DB')
 
         app.listen(port, () => {
