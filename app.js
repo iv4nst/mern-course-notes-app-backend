@@ -26,8 +26,9 @@ const port = process.env.PORT || 3000
 const start = async () => {
     try {
         // connect to DB
-        // await connectDB(process.env.MONGO_URI)
-        await connectDB('mongodb://127.0.0.1:27017/notes-db')
+        const { DB_USER, DB_PASSWORD, DB_URL, DB_NAME } = process.env
+        const db_uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_NAME}?retryWrites=true&w=majority`
+        await connectDB(db_uri)
         console.log('Connected to DB')
 
         app.listen(port, () => {
