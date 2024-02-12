@@ -3,7 +3,7 @@ const router = express.Router()
 
 const {
     getNotes,
-    getOneNote,
+    getNoteByID,
     createNote,
     updateNote,
     deleteNote,
@@ -11,6 +11,6 @@ const {
 
 // /notes
 router.route('/').get(getNotes).post(createNote)
-router.route('/:id').get(getOneNote).patch(updateNote).delete(deleteNote)
+router.route('/:id').get(getNoteByID).patch(updateNote).delete(deleteNote)
 
 module.exports = router
